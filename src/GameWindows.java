@@ -51,6 +51,12 @@ public class GameWindows extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
+
+//                if ((e.getKeyCode() == KeyEvent.VK_DOWN) && (e.getKeyCode() == KeyEvent.VK_LEFT))
+//                {
+//                    gameCanvas.xPlayer += 5;
+//                    gameCanvas.yPlayer -= 5;
+//                }
                 if (e.getKeyCode() == KeyEvent.VK_LEFT)
                 {
                     gameCanvas.xPlayer -= 5;

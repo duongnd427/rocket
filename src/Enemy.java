@@ -26,8 +26,18 @@ public class Enemy {
             x = 0;
             y = random.nextInt(600);
         }
+
+        if (x < 0)  {
+            x = 1024;
+            y = random.nextInt(600);
+        }
         if (y > 600)    {
             y = 0;
+            x = random.nextInt(1024);
+        }
+
+        if (y < 0)    {
+            y = 600;
             x = random.nextInt(1024);
         }
     }

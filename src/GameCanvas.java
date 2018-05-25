@@ -20,6 +20,8 @@ public class GameCanvas extends JPanel {
     public int xPlayer = 400;
     public int yPlayer = 200;
 
+    public int xEnemy, yEnemy;
+
     private Random random = new Random();
     private int countStar = 0;
     private int countEnemy = 0;
@@ -97,14 +99,23 @@ public class GameCanvas extends JPanel {
 
     private void createEnemy() {
         if (this.countEnemy == 50) {
+            int m = random.nextInt(2);
+            if (m == 0) {
+                xEnemy = -(random.nextInt(5)+1);
+                yEnemy = -(random.nextInt(5)+1);
+            }   else
+            {
+                xEnemy = (random.nextInt(5)+1);
+                yEnemy = (random.nextInt(5)+1);
+            }
             Enemy enemy = new Enemy(
                     this.loadImage("resources/images/circle.png"),
                     this.random.nextInt(1024),
                     this.random.nextInt(600),
                     10,
                     10,
-                    this.random.nextInt(4) + 1,
-                    this.random.nextInt(5) + 1
+                    xEnemy,
+                    yEnemy
             );
             this.enemies.add(enemy);
             this.countEnemy = 0;
