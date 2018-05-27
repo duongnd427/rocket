@@ -17,10 +17,9 @@ public class GameCanvas extends JPanel {
     List<Star> stars;
     List<Enemy>enemies;
 
-    public int xPlayer = 400;
-    public int yPlayer = 200;
 
-    public int xEnemy, yEnemy;
+
+    public Player player;
 
     private Random random = new Random();
     private int countStar = 0;
@@ -41,17 +40,11 @@ public class GameCanvas extends JPanel {
 
     private void setupCharacter() {
 
-        this.setupEnemy();
-        this.setupStar();
-
-    }
-
-    private void setupStar() {
-        this.stars = new ArrayList<>();
-    }
-
-    private void setupEnemy() {
         this.enemies = new ArrayList<>();
+        this.stars = new ArrayList<>();
+        this.player = new Player();
+        this.player.position.set(500, 300);
+
     }
 
 
@@ -62,9 +55,9 @@ public class GameCanvas extends JPanel {
 
     public void renderAll() {
         this.background();
-        this.createPlayer();
         this.stars.forEach(star -> star.render(graphics));
         this.enemies.forEach(enemy -> enemy.render(graphics));
+        this.player.render(graphics);
         this.repaint();
     }
 
@@ -75,8 +68,7 @@ public class GameCanvas extends JPanel {
 
         this.stars.forEach(star -> star.run());
         this.enemies.forEach(enemy -> enemy.run());
-
-
+        this.player.run();
     }
 
     private void createStar() {
@@ -99,24 +91,15 @@ public class GameCanvas extends JPanel {
 
     private void createEnemy() {
         if (this.countEnemy == 50) {
+
             int m = random.nextInt(2);
-            if (m == 0) {
-                xEnemy = -(random.nextInt(5)+1);
-                yEnemy = -(random.nextInt(5)+1);
-            }   else
-            {
-                xEnemy = (random.nextInt(5)+1);
-                yEnemy = (random.nextInt(5)+1);
-            }
+            if (m == 0) m = -1;
+            else m = 1;
+
             Enemy enemy = new Enemy(
-                    this.loadImage("resources/images/circle.png"),
-                    this.random.nextInt(1024),
-                    this.random.nextInt(600),
-                    10,
-                    10,
-                    xEnemy,
-                    yEnemy
-            );
+                    this.loadImage("resources/images/circle.png"),10,10);
+            enemy.position = new Vector2D(random.nextInt(1024), random.nextInt(600));
+            enemy.velocity = new Vector2D(m*random.nextInt(5 + 1), m*random.nextInt(8 + 1));
             this.enemies.add(enemy);
             this.countEnemy = 0;
         } else {
@@ -129,17 +112,6 @@ public class GameCanvas extends JPanel {
         background.render(graphics);
     }
 
-    private void createPlayer() {
-        Player player = new Player(this.loadImage("resources/images/circle.png"),
-                xPlayer,
-                yPlayer,
-                30,
-                30,
-                0,
-                0
-        );
-        player.render(graphics);
-    }
 
     private BufferedImage loadImage(String path) {
         try {

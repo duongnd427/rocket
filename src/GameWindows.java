@@ -10,10 +10,10 @@ public class GameWindows extends JFrame {
     GameCanvas gameCanvas;
     long lastTime = 0;
 
-    Random random = new Random();
+//    Random random = new Random();
 
     public GameWindows()    {
-        this.setSize(1024, 600); //kich thuoc cua so windows
+        this.setSize(1024, 600);
         this.setupGameCanvas();
         this.event();
 
@@ -52,47 +52,28 @@ public class GameWindows extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
 
-//                if ((e.getKeyCode() == KeyEvent.VK_DOWN) && (e.getKeyCode() == KeyEvent.VK_LEFT))
-//                {
-//                    gameCanvas.xPlayer += 5;
-//                    gameCanvas.yPlayer -= 5;
-//                }
                 if (e.getKeyCode() == KeyEvent.VK_LEFT)
                 {
-                    gameCanvas.xPlayer -= 5;
-                    if (gameCanvas.xPlayer < 0) {
-                        gameCanvas.xPlayer = 1024;
-                        gameCanvas.yPlayer = random.nextInt(600);
-                    }
+                    gameCanvas.player.velocity.x = -5;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT)
                 {
-                    gameCanvas.xPlayer += 5;
-                    if (gameCanvas.xPlayer > 1024) {
-                        gameCanvas.xPlayer = 0;
-                        gameCanvas.yPlayer = random.nextInt(600);
-                    }
+                    gameCanvas.player.velocity.x = 5;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP)
                 {
-                    gameCanvas.yPlayer -= 5;
-                    if (gameCanvas.yPlayer < 0) {
-                        gameCanvas.yPlayer = 600;
-                        gameCanvas.xPlayer = random.nextInt(1024);
-                    }
+                    gameCanvas.player.velocity.y = -5;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN)
                 {
-                    gameCanvas.yPlayer += 5;
-                    if (gameCanvas.yPlayer > 600) {
-                        gameCanvas.yPlayer = 0;
-                        gameCanvas.xPlayer = random.nextInt(1024);
-                    }
+                    gameCanvas.player.velocity.y = 5;
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
+                gameCanvas.player.velocity.x = 0;
+                gameCanvas.player.velocity.y = 0;
             }
         });
     }

@@ -3,7 +3,7 @@ import java.awt.*;
 public class Background {
 
     public int x, y, width, height;
-    Color color;
+    public Color color;
 
     public Background(int x, int y, int width, int height, Color color) {
         this.x = x;
