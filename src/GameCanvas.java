@@ -74,14 +74,10 @@ public class GameCanvas extends JPanel {
     private void createStar() {
         if (this.countStar == 10) {
             Star star = new Star(
-                    this.loadImage("resources/images/star.png"),
-                    1024,
-                    this.random.nextInt(600),
-                    5,
-                    5,
-                    -this.random.nextInt(4) - 1,
-                    0
-            );
+                    this.loadImage("resources/images/star.png"),5, 5);
+            star.position = new Vector2D(1024, random.nextInt(600));
+            star.velocity = new Vector2D(random.nextInt(5 + 2),0);
+
             this.stars.add(star);
             this.countStar = 0;
         } else {
@@ -99,7 +95,7 @@ public class GameCanvas extends JPanel {
             Enemy enemy = new Enemy(
                     this.loadImage("resources/images/circle.png"),10,10);
             enemy.position = new Vector2D(random.nextInt(1024), random.nextInt(600));
-            enemy.velocity = new Vector2D(m*random.nextInt(5 + 1), m*random.nextInt(8 + 1));
+            enemy.velocity = new Vector2D(m*random.nextInt(5 + 2), m*random.nextInt(8 + 2));
             this.enemies.add(enemy);
             this.countEnemy = 0;
         } else {
