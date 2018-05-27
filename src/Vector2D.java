@@ -43,7 +43,8 @@ public class Vector2D {
     public Vector2D subtractBy(float x, float y) {
         this.x -= x;
         this.y -= y;
-        return this;    }
+        return this;
+    }
 
     public Vector2D subtractBy(Vector2D vector2D) {
         return this.subtractBy(vector2D.x, vector2D.y);
@@ -58,13 +59,13 @@ public class Vector2D {
     }
 
     public Vector2D multiply(float m) {
-        this.x = x*m;
-        this.y = y*m;
+        this.x = x * m;
+        this.y = y * m;
         return this;
     }
 
-    public float length(){
-        return (float)Math.sqrt((double)(x*x) + (double)(y*y));
+    public float length() {
+        return (float) Math.sqrt((double) (x * x) + (double) (y * y));
     }
 
     public Vector2D copy() {
@@ -80,6 +81,6 @@ public class Vector2D {
 
     public Vector2D normalize() {
         float length = this.length();
-        return new Vector2D(this.x/length, this.y/length);
+        return new Vector2D(this.x / length, this.y / length);
     }
 }

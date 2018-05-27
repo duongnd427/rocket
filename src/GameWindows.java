@@ -54,19 +54,19 @@ public class GameWindows extends JFrame {
 
                 if (e.getKeyCode() == KeyEvent.VK_LEFT)
                 {
-                    gameCanvas.player.velocity.x = -5;
+                    gameCanvas.player.velocity.x = -3;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT)
                 {
-                    gameCanvas.player.velocity.x = 5;
+                    gameCanvas.player.velocity.x = 3;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP)
                 {
-                    gameCanvas.player.velocity.y = -5;
+                    gameCanvas.player.velocity.y = -3;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN)
                 {
-                    gameCanvas.player.velocity.y = 5;
+                    gameCanvas.player.velocity.y = 3;
                 }
             }
 

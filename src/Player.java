@@ -7,6 +7,7 @@ public class Player {
 
     public Vector2D position;
     public Vector2D velocity;
+    public Vector2D x,y,z;
     private Random random;
 
     private List<Vector2D> verties;
@@ -16,31 +17,58 @@ public class Player {
         this.position = new Vector2D();
         this.velocity = new Vector2D();
         this.random = new Random();
+        this.x = new Vector2D();
+        this.y = new Vector2D();
+        this.z = new Vector2D();
         this.verties = Arrays.asList(
-                new Vector2D(),
-                new Vector2D(0, 16),
-                new Vector2D(20, 8)
+                x = new Vector2D(),
+                y = new Vector2D(0, 16),
+                z = new Vector2D(20, 8)
         );
         this.polygon = new Polygon();
     }
 
     public void run() {
-        this.position.addUp(this.velocity);
+        this.verties = Arrays.asList(x.addUp(velocity), y.addUp(velocity), z.addUp(velocity));
+        this.position = new Vector2D(y.x + (z.x - y.x)/3, (x.y + y.y)/2);
         this.backToScreen();
     }
 
+//    private void backToScreen() {
+//        if (this.position.x > 1024)   {
+//            this.position.set(0, this.random.nextInt(600));
+//        }
+//        if (this.position.x < 0)  {
+//            this.position.set(1024, this.random.nextInt(600));
+//        }
+//        if (this.position.y > 600)    {
+//            this.position.set(this.random.nextInt(1024), 0);
+//        }
+//        if (this.position.y < 0)    {
+//            this.position.set(this.random.nextInt(1024), 600);
+//        }
+//    }
+
     private void backToScreen() {
-        if (this.position.x > 1024)   {
-            this.position.set(0, this.random.nextInt(600));
+        if (this.z.x > 1024) {
+            x.x = 0;
+            y.x = 0;
+            z.x = 20;
         }
-        if (this.position.x < 0)  {
-            this.position.set(1024, this.random.nextInt(600));
+        if (this.x.x < 0) {
+            x.x = 1004;
+            y.x = 1004;
+            z.x = 1024;
         }
-        if (this.position.y > 600)    {
-            this.position.set(this.random.nextInt(1024), 0);
+        if (this.x.y < 0) {
+            x.y = 584;
+            y.y = 600;
+            z.y = 592;
         }
-        if (this.position.y < 0)    {
-            this.position.set(this.random.nextInt(1024), 600);
+        if (this.y.y > 600) {
+            x.y = 0;
+            y.y = 16;
+            z.y = 8;
         }
     }
 

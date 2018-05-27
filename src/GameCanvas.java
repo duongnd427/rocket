@@ -15,8 +15,7 @@ public class GameCanvas extends JPanel {
     Graphics graphics;
 
     List<Star> stars;
-    List<Enemy>enemies;
-
+    List<Enemy> enemies;
 
 
     public Player player;
@@ -33,7 +32,7 @@ public class GameCanvas extends JPanel {
         this.setVisible(true);
     }
 
-    private void setupBackBuffered()    {
+    private void setupBackBuffered() {
         this.backBuffered = new BufferedImage(1024, 600, BufferedImage.TYPE_4BYTE_ABGR);
         this.graphics = this.backBuffered.getGraphics();
     }
@@ -43,7 +42,6 @@ public class GameCanvas extends JPanel {
         this.enemies = new ArrayList<>();
         this.stars = new ArrayList<>();
         this.player = new Player();
-        this.player.position.set(500, 300);
 
     }
 
@@ -74,9 +72,9 @@ public class GameCanvas extends JPanel {
     private void createStar() {
         if (this.countStar == 10) {
             Star star = new Star(
-                    this.loadImage("resources/images/star.png"),5, 5);
+                    this.loadImage("resources/images/star.png"), 5, 5);
             star.position = new Vector2D(1024, random.nextInt(600));
-            star.velocity = new Vector2D(random.nextInt(5 + 2),0);
+            star.velocity = new Vector2D(random.nextInt(5 + 2), 0);
 
             this.stars.add(star);
             this.countStar = 0;
@@ -93,9 +91,9 @@ public class GameCanvas extends JPanel {
             else m = 1;
 
             Enemy enemy = new Enemy(
-                    this.loadImage("resources/images/circle.png"),10,10);
+                    this.loadImage("resources/images/circle.png"), 10, 10);
             enemy.position = new Vector2D(random.nextInt(1024), random.nextInt(600));
-            enemy.velocity = new Vector2D(m*random.nextInt(5 + 2), m*random.nextInt(8 + 2));
+            enemy.velocity = new Vector2D(m * random.nextInt(5 + 2), m * random.nextInt(8 + 2));
             this.enemies.add(enemy);
             this.countEnemy = 0;
         } else {
@@ -104,7 +102,7 @@ public class GameCanvas extends JPanel {
     }
 
     private void background() {
-        Background background = new Background(0,0,1024,600, Color.black);
+        Background background = new Background(0, 0, 1024, 600, Color.black);
         background.render(graphics);
     }
 
