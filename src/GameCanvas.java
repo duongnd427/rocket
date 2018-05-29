@@ -63,18 +63,20 @@ public class GameCanvas extends JPanel {
     public void runAll() {
         this.createStar();
         this.createEnemy();
+        this.player.run();
 
         this.stars.forEach(star -> star.run());
-        this.enemies.forEach(enemy -> enemy.run());
-        this.player.run();
+        this.enemies.forEach(enemy -> enemy.run(this.player.position));
+
+
     }
 
     private void createStar() {
         if (this.countStar == 10) {
             Star star = new Star(
                     this.loadImage("resources/images/star.png"), 5, 5);
-            star.position = new Vector2D(1024, random.nextInt(600));
-            star.velocity = new Vector2D(random.nextInt(5 + 2), 0);
+            star.position.set(1024, random.nextInt(600));
+            star.velocity.set(random.nextInt(5 + 2), 0);
 
             this.stars.add(star);
             this.countStar = 0;
@@ -86,15 +88,19 @@ public class GameCanvas extends JPanel {
     private void createEnemy() {
         if (this.countEnemy == 50) {
 
-            int m = random.nextInt(2);
-            if (m == 0) m = -1;
-            else m = 1;
+//            float m = random.nextInt(2);
+//            if (m == 0) m = -1;
+//            else m = 1;
+
 
             Enemy enemy = new Enemy(
                     this.loadImage("resources/images/circle.png"), 10, 10);
-            enemy.position = new Vector2D(random.nextInt(1024), random.nextInt(600));
-            enemy.velocity = new Vector2D(m * random.nextInt(5 + 2), m * random.nextInt(8 + 2));
+            enemy.position.set(random.nextInt(1024), random.nextInt(600));
+//            enemy.velocity = player.position.subtract(enemy.position);
+//            enemy.velocity = enemy.velocity.normalize();
             this.enemies.add(enemy);
+
+//            enemy.velocity = enemy.velocity.multiply();
             this.countEnemy = 0;
         } else {
             this.countEnemy += 1;

@@ -7,11 +7,13 @@ public class Player {
 
     public Vector2D position;
     public Vector2D velocity;
+    public Vector2D xyplayer;
     public Vector2D x,y,z;
     private Random random;
 
     private List<Vector2D> verties;
     private Polygon polygon;
+    public Enemy enemy;
 
     public Player() {
         this.position = new Vector2D();
@@ -29,10 +31,15 @@ public class Player {
     }
 
     public void run() {
+
         this.verties = Arrays.asList(x.addUp(velocity), y.addUp(velocity), z.addUp(velocity));
-        this.position = new Vector2D(y.x + (z.x - y.x)/3, (x.y + y.y)/2);
+        this.setVerties();
+
+        this.position = this.position.set(y.x + (z.x - y.x)/3, (x.y + y.y)/2);
         this.backToScreen();
     }
+
+
 
 //    private void backToScreen() {
 //        if (this.position.x > 1024)   {
@@ -70,6 +77,21 @@ public class Player {
             y.y = 16;
             z.y = 8;
         }
+    }
+
+    private void setVerties(){
+        List<Vector2D> vectorG = Arrays.asList(
+                this.velocity.normalize().multiply(16),
+                this.velocity.normalize().multiply((float)(8*Math.sqrt(2))),
+                this.velocity.normalize().multiply((float)(8*Math.sqrt(2)))
+        );
+
+        this.verties = Arrays.asList(
+                this.position.add(vectorG.get(0)),
+                this.position.add(vectorG.get(1).rotate(135)),
+                this.position.add(vectorG.get(2).rotate(-135))
+        );
+
     }
 
     public void render(Graphics graphics) {

@@ -10,7 +10,10 @@ public class Enemy {
     public int width, height;
     private Random random;
 
+    public Player player = new Player();
+
     public Enemy(BufferedImage image, int width, int height) {
+
         this.image = image;
         this.position = new Vector2D();
         this.width = width;
@@ -19,7 +22,16 @@ public class Enemy {
         this.random = new Random();
     }
 
-    public void run() {
+    public void run(Vector2D positionPlayer)
+    {
+
+        this.velocity = this.followPlayer(positionPlayer).multiply(3);
+
+//        this.velocity = this.velocity.multiply(3);
+
+//        xyPlayer(player.position);
+//        velocity = this.xyPlayer(player.position).m;
+
         this.position = this.position.addUp(velocity);
         this.backToScreen();
     }
@@ -38,6 +50,12 @@ public class Enemy {
         if (position.y < 0)    {
             position.set(random.nextInt(1024), 600);
         }
+    }
+
+    private Vector2D followPlayer(Vector2D positionPlayer){
+        Vector2D velocitySubtract;
+        velocitySubtract = positionPlayer.subtract(this.position);
+        return velocitySubtract.normalize();
     }
 
     public void render(Graphics graphics){

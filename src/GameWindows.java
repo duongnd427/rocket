@@ -11,6 +11,8 @@ public class GameWindows extends JFrame {
     long lastTime = 0;
 
 //    Random random = new Random();
+//    private Enemy enemy();
+//    private Player player;
 
     public GameWindows()    {
         this.setSize(1024, 600);
@@ -24,6 +26,8 @@ public class GameWindows extends JFrame {
         while (true)    {
             long currentTime = System.nanoTime();
             if (currentTime - this.lastTime >= 17_000_000)   {
+//                enemy.velocity = player.position.subtractBy(this.position);
+//        this.velocity = this.velocity.normalize()
                 this.gameCanvas.runAll();
                 this.gameCanvas.renderAll();
                 this.lastTime = currentTime;
@@ -54,19 +58,19 @@ public class GameWindows extends JFrame {
 
                 if (e.getKeyCode() == KeyEvent.VK_LEFT)
                 {
-                    gameCanvas.player.velocity.x = -3;
+                    gameCanvas.player.velocity.x = -7;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT)
                 {
-                    gameCanvas.player.velocity.x = 3;
+                    gameCanvas.player.velocity.x = 7;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_UP)
                 {
-                    gameCanvas.player.velocity.y = -3;
+                    gameCanvas.player.velocity.y = -7;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN)
                 {
-                    gameCanvas.player.velocity.y = 3;
+                    gameCanvas.player.velocity.y = 7;
                 }
             }
 

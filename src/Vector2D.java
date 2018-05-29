@@ -65,7 +65,7 @@ public class Vector2D {
     }
 
     public float length() {
-        return (float) Math.sqrt((double) (x * x) + (double) (y * y));
+        return (float) Math.sqrt((double)(this.x * this.x) + (double)(this.y * this.y));
     }
 
     public Vector2D copy() {
