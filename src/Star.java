@@ -1,29 +1,25 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
-public class Star {
 
-    BufferedImage image;
-    public Vector2D position;
+public class Star extends GameObject{
+
     public Vector2D velocity;
 
-    public int width;
-    public int height;
-
-    public Star(BufferedImage image, int width, int height) {
-        this.image = image;
-        this.position = new Vector2D();
-        this.width = width;
-        this.height = height;
+    public Star() {
         this.velocity = new Vector2D();
+        this.renderer = new ImageRenderer("resources/images/star.png", 5, 5);
     }
 
 
+    @Override
     public void run() {
-        this.position = this.position.subtractBy(this.velocity);
+        super.run();
+        this.position.addUp(this.velocity);
     }
 
+    @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(this.image, (int)position.x, (int)position.y, this.width, this.height, null);
+        super.render(graphics);
+
     }
 }

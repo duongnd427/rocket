@@ -1,20 +1,16 @@
 import java.awt.*;
 
 public class Background {
+    public Vector2D position;
+    public Renderer renderer;
 
-    public int x, y, width, height;
-    public Color color;
-
-    public Background(int x, int y, int width, int height, Color color) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.color = color;
+    public Background() {
+        this.position = new Vector2D();
+        this.renderer = new BackgroundRenderer(1024, 600, Color.BLACK);
     }
 
+
     public void render(Graphics graphics) {
-        graphics.setColor(color);
-        graphics.fillRect(x,y,width,height);
+        this.renderer.render(graphics, this.position);
     }
 }
