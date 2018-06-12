@@ -15,13 +15,15 @@ public class EnemyShoot {
 
     public void run(Enemy enemy) {
 //        if (this.frameCounter.run()) {
-////            for (double angle = 0.0; angle <= 360; angle += 30) {
+//            for (double angle = 0.0; angle <= 360; angle += 30) {
 //                Bullet bulletEnemy = new Bullet();
 //                bulletEnemy.position.set(enemy.position);
 //                bulletEnemy.velocity.set(new Vector2D(3, 0));
 //                GameObjectManager.instance.add(bulletEnemy);
-//            this.frameCounter.reset();
+//                this.frameCounter.reset();
+//            }
 //        }
     }
-
 }
+
+

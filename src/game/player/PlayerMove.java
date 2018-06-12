@@ -8,7 +8,6 @@ import java.util.Random;
 public class PlayerMove {
 
     public Vector2D velocity;
-    public PlayerShoot playerShoot;
     private Random random;
     private Vector2D NORMAL = new Vector2D(3.5f, 0);
     private Vector2D HIGH = new Vector2D(10, 0);
@@ -38,9 +37,6 @@ public class PlayerMove {
         Vector2D rotate = velocity.rotate(angle);
             this.velocity.set(rotate);
 
-        if (KeyboardInput.instance.spacePressed) {
-            player.playerShoot.run(player);
-        }
 
 
         this.backToScreen(player);

@@ -1,5 +1,6 @@
 import base.GameObjectManager;
 import game.background.Background;
+import game.effect.EffectShield;
 import game.enemy.EnemySpawner;
 import game.player.Player;
 import game.star.StarSpawner;
@@ -30,9 +31,10 @@ public class GameCanvas extends JPanel {
 
     private void setupCharacter() {
         GameObjectManager.instance.add(new Background());
-        this.setupPlayer();
         GameObjectManager.instance.add(new StarSpawner());
         GameObjectManager.instance.add(new EnemySpawner());
+        GameObjectManager.instance.add(new EffectShield());
+        this.setupPlayer();
     }
 
     private void setupPlayer() {
