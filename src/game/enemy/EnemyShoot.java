@@ -6,24 +6,24 @@ import base.Vector2D;
 import game.bullet.Bullet;
 
 public class EnemyShoot {
-
-    public FrameCounter frameCounter = new FrameCounter(100);
+    private FrameCounter frameCounter;
 
     public EnemyShoot() {
-
+        this.frameCounter = new FrameCounter(50);
     }
 
     public void run(Enemy enemy) {
-//        if (this.frameCounter.run()) {
-//            for (double angle = 0.0; angle <= 360; angle += 30) {
+        // create bullet
+        if (this.frameCounter.run()) {
+//            for (double angle = 0.0; angle <= 360.0; angle += 15.0) {
 //                Bullet bulletEnemy = new Bullet();
 //                bulletEnemy.position.set(enemy.position);
-//                bulletEnemy.velocity.set(new Vector2D(3, 0));
+//                bulletEnemy.velocity.set((new Vector2D(3, 0)).rotate(angle));
 //                GameObjectManager.instance.add(bulletEnemy);
-//                this.frameCounter.reset();
 //            }
-//        }
+            this.frameCounter.reset();
+        }
+
+
     }
 }
-
-

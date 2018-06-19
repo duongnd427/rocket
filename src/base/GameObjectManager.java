@@ -22,7 +22,7 @@ public class GameObjectManager {
     }
 
     public void add(GameObject gameObject) {
-        this.tempList.add((gameObject)); //GameObjectManager.instance.recycle(GameObject.class));
+        this.tempList.add(gameObject);
     }
 
     public void runAll() {
@@ -48,6 +48,7 @@ public class GameObjectManager {
                 .findFirst()
                 .orElse(null);
     }
+
 
     public <T extends GameObject> T checkCollision(BoxCollider boxCollider, Class<T> cls) {
         return (T) this.list
@@ -82,5 +83,4 @@ public class GameObjectManager {
         }
         return object;
     }
-
 }

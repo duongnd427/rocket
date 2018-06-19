@@ -21,7 +21,7 @@ public class Vector2D {
     }
 
     public Vector2D set(Vector2D vector2D) {
-        return this.set(vector2D.x, vector2D.y);
+        return this.set(vector2D.x,vector2D.y);
     }
 
     public Vector2D addUp(float x, float y) {
@@ -60,14 +60,14 @@ public class Vector2D {
         return this.subtract(vector2D.x, vector2D.y);
     }
 
-    public Vector2D multiply(float m) {
-        this.x = x * m;
-        this.y = y * m;
-        return this;
+    public float length() {
+        return (float) Math.sqrt((double)(this.x * this.x + this.y * this.y));
     }
 
-    public float length() {
-        return (float) Math.sqrt((double)(this.x * this.x) + (double)(this.y * this.y));
+    public Vector2D multiply(float number) {
+        this.x *= number;
+        this.y *= number;
+        return this;
     }
 
     public Vector2D copy() {

@@ -3,24 +3,22 @@ package game.effect;
 import base.FrameCounter;
 import base.GameObject;
 import base.GameObjectManager;
-import game.player.Player;
 import physic.BoxCollider;
 import physic.PhysicBody;
-import physic.RunHitObject;
 import renderer.ImageRenderer;
 
+import java.awt.*;
 import java.util.Random;
 
 public class EffectShield extends GameObject implements PhysicBody {
 
     public BoxCollider boxCollider;
     private FrameCounter frameCounter;
-//    public RunHitObject runHitObject;
     private Random random;
 
     public EffectShield() {
         this.random = new Random();
-        this.renderer = (renderer.Renderer) new ImageRenderer("resources/images/powerup_shield.png", 20,20);
+        this.renderer = (renderer.Renderer) new ImageRenderer("resources/images/powerup_shield.png", 20,20, Color.cyan);
         this.boxCollider = new BoxCollider(20,20);
         this.frameCounter = new FrameCounter(1000);
 

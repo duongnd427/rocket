@@ -1,6 +1,8 @@
+import base.GameObject;
 import base.GameObjectManager;
+import game.EffectObject.EffectObejectSpawner;
 import game.background.Background;
-import game.effect.EffectShield;
+//import game.enemy.EnemyCircle;
 import game.enemy.EnemySpawner;
 import game.player.Player;
 import game.star.StarSpawner;
@@ -9,7 +11,6 @@ import input.KeyboardInput;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
 
 public class GameCanvas extends JPanel {
     BufferedImage backBuffered;
@@ -21,6 +22,7 @@ public class GameCanvas extends JPanel {
         this.setSize(1024, 600);
         this.setupBackBuffered();
         this.setupCharacter();
+
         this.setVisible(true);
     }
 
@@ -31,10 +33,11 @@ public class GameCanvas extends JPanel {
 
     private void setupCharacter() {
         GameObjectManager.instance.add(new Background());
+        this.setupPlayer();
         GameObjectManager.instance.add(new StarSpawner());
         GameObjectManager.instance.add(new EnemySpawner());
-        GameObjectManager.instance.add(new EffectShield());
-        this.setupPlayer();
+        GameObjectManager.instance.add(new EffectObejectSpawner());
+//        GameObjectManager.instance.add(new EnemyCircle());
     }
 
     private void setupPlayer() {
@@ -45,8 +48,8 @@ public class GameCanvas extends JPanel {
     }
 
     @Override
-
     protected void paintComponent(Graphics g) {
+        // lat backbuffered
         g.drawImage(this.backBuffered, 0, 0, null);
     }
 
@@ -59,5 +62,4 @@ public class GameCanvas extends JPanel {
         GameObjectManager.instance.runAll();
         KeyboardInput.instance.reset();
     }
-
 }

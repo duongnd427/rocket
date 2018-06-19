@@ -7,6 +7,4 @@ public interface PhysicBody {
     BoxCollider getBoxCollider();
 
     void getHit(GameObject gameObject);
-
-
 }

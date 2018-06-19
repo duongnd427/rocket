@@ -8,10 +8,13 @@ public class GameWindow extends JFrame {
 
     GameCanvas gameCanvas;
     public long lastTime = 0;
+
     public GameWindow() {
         this.setSize(1024, 600); // set size window
+
         this.setupGameCanvas();
         this.event();
+
         this.setVisible(true);
     }
 
@@ -20,7 +23,6 @@ public class GameWindow extends JFrame {
         this.add(this.gameCanvas);
     }
 
-
     private void event() {
         this.keyboardEvent();
         this.windowEvent();
@@ -28,17 +30,14 @@ public class GameWindow extends JFrame {
 
     private void keyboardEvent() {
         this.addKeyListener(KeyboardInput.instance);
-
     }
 
     private void windowEvent() {
         this.addWindowListener(new WindowAdapter() {
-
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(1);
             }
-
         });
     }
 
@@ -50,6 +49,7 @@ public class GameWindow extends JFrame {
                 this.gameCanvas.renderAll();
                 this.lastTime = currentTime;
             }
+
         }
     }
 

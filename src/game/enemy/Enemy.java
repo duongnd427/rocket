@@ -3,25 +3,27 @@ package game.enemy;
 import base.GameObject;
 import base.GameObjectManager;
 import base.Vector2D;
+import game.EffectObject.Explosion;
 import game.player.Player;
 import physic.BoxCollider;
 import physic.PhysicBody;
-import physic.RunHitObject;
 import renderer.ImageRenderer;
+
+import java.awt.*;
+import java.util.Random;
 
 public class Enemy extends GameObject implements PhysicBody {
 
     public Vector2D velocity;
     public BoxCollider boxCollider;
-    public RunHitObject runHitObject;
     private EnemyShoot enemyShoot;
+    private Random random;
 
     public Enemy() {
         this.velocity = new Vector2D();
-        this.renderer = new ImageRenderer("resources/images/circle.png", 20, 20);
+        this.renderer = new ImageRenderer("resources/images/circle.png", 20, 20, Color.YELLOW);
         this.enemyShoot = new EnemyShoot();
         this.boxCollider = new BoxCollider(20, 20);
-        this.runHitObject = new RunHitObject(Player.class);
     }
 
     @Override
@@ -39,19 +41,31 @@ public class Enemy extends GameObject implements PhysicBody {
                             .multiply(2.0f)
             );
         }
-        this.runHitObject.run(this);
     }
 
     @Override
     public void getHit(GameObject gameObject) {
-        if (gameObject instanceof Player) {
-            Player player = GameObjectManager.instance.findPlayer();
-            if (player != null) {
-                player.live--;
-            }
-            if (player.live == 0) player.isAlive = false;
-        }
+
+        creatExplosion();
         this.isAlive = false;
+    }
+
+    public void creatExplosion(){
+
+
+        for(double angle1 = 0.0; angle1 <= 360; angle1 += 23) {
+            this.random = new Random();
+            for (double angle = 0.0; angle <= 360.0; angle += random.nextInt(30)+30) {
+                Explosion explosion = GameObjectManager.instance.recycle(Explosion.class);
+                explosion.renderer = new ImageRenderer("resources/images/star.png", 12, 12, Color.yellow);
+                explosion.position.set(this.position);
+                this.random = new Random();
+                explosion.velocity.set((new Vector2D(this.random.nextInt(4)+1, 0)).rotate(angle));
+                explosion.run();
+
+            }
+        }
+
     }
 
     @Override

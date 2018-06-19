@@ -13,7 +13,7 @@ public class PolygonRenderer implements Renderer {
     public double angle = 0.0;
     private Color color;
 
-    public PolygonRenderer(Color color, Vector2D... verties) { //base.Vector2D[]
+    public PolygonRenderer(Color color, Vector2D... verties) {
         this.verties = Arrays.asList(verties);
         this.color = color;
         this.polygon = new Polygon();
@@ -25,7 +25,6 @@ public class PolygonRenderer implements Renderer {
         this.updatePolygon(position);
         graphics.fillPolygon(this.polygon);
     }
-
 
     public void updatePolygon(Vector2D position) {
         this.polygon.reset();
@@ -41,6 +40,6 @@ public class PolygonRenderer implements Renderer {
         this.verties.stream()
                 .map(vector2D -> vector2D.rotate(angle))
                 .map(vector2D -> vector2D.add(translate))
-                .forEach(vertex -> polygon.addPoint((int) vertex.x, (int) vertex.y));
+                .forEach(vertex -> polygon.addPoint((int)vertex.x, (int)vertex.y));
     }
 }

@@ -10,7 +10,7 @@ public class PlayerMove {
     public Vector2D velocity;
     private Random random;
     private Vector2D NORMAL = new Vector2D(3.5f, 0);
-    private Vector2D HIGH = new Vector2D(10, 0);
+    private Vector2D HIGH = new Vector2D(15, 0);
     public double angle = 0.0;
 
     public PlayerMove() {
@@ -19,14 +19,13 @@ public class PlayerMove {
     }
 
     public void run(Player player) {
-        player.position.addUp(this.velocity);
-        Vector2D velocity = NORMAL.copy();
 
-        if (KeyboardInput.instance.leftPressed){
-            this.angle -= 5.0;
+        Vector2D velocity = NORMAL.copy();
+        if (KeyboardInput.instance.leftPressed) {
+            this.angle -= 15.0;
         }
         if (KeyboardInput.instance.rightPressed) {
-            this.angle += 5.0;
+            this.angle += 15.0;
         }
         if (KeyboardInput.instance.upPressed) {
             velocity = HIGH.copy();
@@ -34,11 +33,11 @@ public class PlayerMove {
         if (KeyboardInput.instance.upReleased) {
             velocity = NORMAL.copy();
         }
+
         Vector2D rotate = velocity.rotate(angle);
-            this.velocity.set(rotate);
+        this.velocity.set(rotate);
 
-
-
+        player.position.addUp(this.velocity);
         this.backToScreen(player);
     }
 
