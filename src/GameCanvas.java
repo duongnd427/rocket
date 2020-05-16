@@ -1,6 +1,6 @@
 import base.GameObject;
 import base.GameObjectManager;
-import game.EffectObject.EffectObejectSpawner;
+import game.EffectObject.EffectObjectSpawner;
 import game.background.Background;
 //import game.enemy.EnemyCircle;
 import game.enemy.EnemySpawner;
@@ -36,7 +36,7 @@ public class GameCanvas extends JPanel {
         this.setupPlayer();
         GameObjectManager.instance.add(new StarSpawner());
         GameObjectManager.instance.add(new EnemySpawner());
-        GameObjectManager.instance.add(new EffectObejectSpawner());
+        GameObjectManager.instance.add(new EffectObjectSpawner());
 //        GameObjectManager.instance.add(new EnemyCircle());
     }
 
